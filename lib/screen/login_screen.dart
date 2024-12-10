@@ -27,9 +27,14 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Inicio de Sesión"),
-        backgroundColor: Colors.deepPurple,
+        title: Text(
+          "Iniciar Sesión",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -40,22 +45,39 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "¡Bienvenido de nuevo!",
+                  "Bienvenido de nuevo",
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple,
+                    color: Colors.white,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
+                Text(
+                  "Inicia sesión para continuar",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[500],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 40),
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
                     labelText: 'Correo Electrónico',
-                    prefixIcon: Icon(Icons.email),
+                    labelStyle: TextStyle(color: Colors.grey),
+                    prefixIcon: Icon(Icons.email, color: Colors.red),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),
                     border: OutlineInputBorder(),
                   ),
+                  style: TextStyle(color: Colors.white),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -67,14 +89,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 20),
                 TextFormField(
                   controller: _passwordController,
                   decoration: InputDecoration(
                     labelText: 'Contraseña',
-                    prefixIcon: Icon(Icons.lock),
+                    labelStyle: TextStyle(color: Colors.grey),
+                    prefixIcon: Icon(Icons.lock, color: Colors.red),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),
                     border: OutlineInputBorder(),
                   ),
+                  style: TextStyle(color: Colors.white),
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -86,26 +116,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: _login,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
-                    padding: EdgeInsets.symmetric(vertical: 12),
+                    backgroundColor: Colors.red,
+                    padding: EdgeInsets.symmetric(vertical: 14),
                   ),
                   child: Text(
                     "Iniciar Sesión",
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // Texto en blanco
+                    ),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 15),
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/register');
                   },
                   child: Text(
-                    "¿No tienes una cuenta? Regístrate",
-                    style: TextStyle(color: Colors.deepPurple),
+                    "¿No tienes cuenta? Regístrate aquí",
+                    style: TextStyle(color: Colors.red),
                   ),
                 ),
               ],
